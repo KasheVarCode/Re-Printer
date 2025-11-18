@@ -1,0 +1,20 @@
+---
+interface Props {
+  title: string;
+  servicesLabel: string;
+  contactLabel: string;
+}
+
+const { title, servicesLabel, contactLabel } = Astro.props;
+---
+
+<header class="site-header">
+  <div class="container bar">
+    <div class="logo">{title}</div>
+    <nav>
+      <a class="btn btn-ghost" href="#services">{servicesLabel}</a>
+      <a class="btn btn-primary" href="#contacts">{contactLabel}</a>
+    </nav>
+  </div>
+</header>
+

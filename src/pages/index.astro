@@ -1,0 +1,252 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import { t, get } from '../i18n/index';
+
+const PHONE = '+79000000000';
+const WA = `https://wa.me/79000000000`;
+---
+
+<BaseLayout title={t('site.title')} description={t('hero.lead')}>
+	<!-- Header -->
+	<Header 
+		title={t('site.title')} 
+		servicesLabel={t('nav.services')} 
+		contactLabel={t('nav.contact')}
+	/>
+
+		<main>
+			<!-- Hero Section -->
+			<section class="hero">
+				<div class="container">
+					<div class="hero-content">
+						<h1>{t('hero.title')}</h1>
+						<p class="lead">{t('hero.lead')}</p>
+						<div class="hero-cta">
+							<a class="btn btn-primary" href={`tel:${PHONE}`}>📞 {t('cta.call')}</a>
+							<a class="btn btn-secondary" href={WA} target="_blank" rel="noopener">💬 {t('cta.whatsapp')}</a>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Services Section -->
+			<section id="services">
+				<div class="container">
+					<h2 class="section-title">{t('nav.services')}</h2>
+					<div class="services-grid">
+						<ServiceCard 
+							title={t('services.items.0.title')}
+							description={t('services.items.0.desc')}
+							imageSrc="/images/mono.webp"
+						/>
+						<ServiceCard 
+							title={t('services.items.1.title')}
+							description={t('services.items.1.desc')}
+							imageSrc="/images/poly.webp"
+						/>
+						<ServiceCard 
+							title={t('services.items.2.title')}
+							description={t('services.items.2.desc')}
+							imageSrc="/images/toner.webp"
+						/>
+					</div>
+				</div>
+			</section>
+
+			<!-- Brands Section -->
+			<section class="brands">
+				<div class="container">
+					<p class="text-center text-muted mb-lg">Работаем с ведущими брендами</p>
+					<div class="brands-grid">
+						{get('brands').map((brand: string) => (
+							<div class="brand-item">{brand}</div>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<!-- Cases Section -->
+			<section>
+				<div class="container">
+					<h2 class="section-title">Наши работы</h2>
+					<div class="cases-grid">
+						{get('cases').map((item: any) => (
+							<article class="card">
+								<h3 class="case-title">{item.title}</h3>
+								<p class="case-meta">{item.meta}</p>
+							</article>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<!-- Contacts Section -->
+			<section class="contacts" id="contacts">
+				<div class="container">
+					<div class="contacts-card">
+						<h2 class="text-center mb-lg">{t('nav.contact')}</h2>
+						<div class="contacts-methods">
+							<a class="btn btn-primary" href={`tel:${PHONE}`}>📞 {t('contacts.phone_display')}</a>
+							<a class="btn btn-secondary" href={`mailto:${t('contacts.email')}`}>✉️ {t('contacts.email')}</a>
+						</div>
+						<p class="text-center text-muted mb-xl">{t('contacts.hours')}</p>
+						
+						<form id="lead-form" class="contacts-form">
+							<div class="form-group">
+								<label class="form-label" for="name">{t('contacts.name_label')}</label>
+								<input 
+									class="form-input" 
+									id="name"
+									name="name" 
+									type="text" 
+									placeholder={t('contacts.name_label')} 
+									required 
+								/>
+							</div>
+							<div class="form-group">
+								<label class="form-label" for="phone">{t('contacts.phone_label')}</label>
+								<input 
+									class="form-input"
+									id="phone" 
+									name="phone" 
+									type="tel" 
+									placeholder={t('contacts.phone_display')} 
+									required 
+								/>
+							</div>
+							<div class="form-group">
+								<label class="form-label" for="device">{t('contacts.device_label')}</label>
+								<input 
+									class="form-input"
+									id="device" 
+									name="device" 
+									type="text" 
+									placeholder={t('contacts.device_placeholder')}
+								/>
+								<span class="form-hint">Необязательно, но поможет нам подготовиться</span>
+							</div>
+							<button class="btn btn-primary" type="submit">Отправить заявку</button>
+						</form>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<!-- Footer -->
+		<Footer title={t('site.title')} />
+
+		<!-- Sticky CTA (Mobile) -->
+		<div class="sticky-cta">
+			<a class="btn btn-primary" href={`tel:${PHONE}`}>📞 Позвонить</a>
+			<a class="btn btn-secondary" href={WA} target="_blank" rel="noopener">💬 WhatsApp</a>
+		</div>
+
+		<!-- Animations Script -->
+		<script>
+			// Intersection Observer для анимаций при скролле
+			if (typeof window !== 'undefined') {
+				const observerOptions = {
+					root: null,
+					rootMargin: '0px',
+					threshold: 0.1
+				};
+
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('animate-fade-in-up');
+							observer.unobserve(entry.target);
+						}
+					});
+				}, observerOptions);
+
+				// Наблюдаем за всеми карточками и секциями
+				document.addEventListener('DOMContentLoaded', () => {
+					const elements = document.querySelectorAll('.card, .hero-content, .section-title, .brands-grid');
+					elements.forEach((el, index) => {
+						// Задержка для каскадного эффекта
+						if (el instanceof HTMLElement) {
+							el.style.animationDelay = `${index * 0.1}s`;
+						}
+						observer.observe(el);
+					});
+
+					// Эффекты для карточек услуг
+					const serviceCardEls = document.querySelectorAll('.services-grid .card-feature');
+					const firstServiceCard = serviceCardEls[0];
+					const secondServiceCard = serviceCardEls[1];
+					const body = document.body;
+					if (firstServiceCard instanceof Element) {
+						firstServiceCard.addEventListener('mouseenter', () => {
+							body.classList.remove('cmy-mode');
+							body.classList.add('grayscale-mode');
+						});
+						firstServiceCard.addEventListener('mouseleave', () => {
+							body.classList.remove('grayscale-mode');
+						});
+					}
+
+					// Эффект CMY при наведении на ВТОРУЮ карточку (Ремонт полноцветных)
+					if (secondServiceCard instanceof Element) {
+						secondServiceCard.addEventListener('mouseenter', () => {
+							body.classList.remove('grayscale-mode');
+							body.classList.add('cmy-mode');
+						});
+						secondServiceCard.addEventListener('mouseleave', () => {
+							body.classList.remove('cmy-mode');
+						});
+					}
+				});
+
+				// Плавное появление header при скролле
+				let lastScroll = 0;
+				const header = document.querySelector('.site-header');
+				
+				window.addEventListener('scroll', () => {
+					const currentScroll = window.pageYOffset;
+					
+					if (currentScroll > lastScroll && currentScroll > 100) {
+						if (header instanceof HTMLElement) header.style.transform = 'translateY(-100%)';
+					} else {
+						if (header instanceof HTMLElement) header.style.transform = 'translateY(0)';
+					}
+					
+					lastScroll = currentScroll;
+				});
+
+				// Обработка формы
+				const form = document.getElementById('lead-form');
+				if (form && form.tagName === 'FORM') {
+					form.addEventListener('submit', (e) => {
+						e.preventDefault();
+						
+						const formData = new FormData(form as HTMLFormElement);
+						const data = Object.fromEntries(formData.entries());
+						
+						console.log('Форма отправлена:', data);
+						
+						// Показываем успешное сообщение
+						const button = form.querySelector('button[type="submit"]');
+						const originalText = button ? button.textContent : null;
+						if (button instanceof HTMLButtonElement) {
+							button.textContent = '✓ Отправлено!';
+							button.disabled = true;
+							button.style.background = '#4F46E5';
+						}
+						
+						setTimeout(() => {
+							(form as HTMLFormElement).reset();
+							if (button instanceof HTMLButtonElement) {
+								button.textContent = originalText || 'Отправить заявку';
+								button.disabled = false;
+								button.style.background = '';
+							}
+						}, 3000);
+					});
+				}
+			}
+		</script>
+</BaseLayout>

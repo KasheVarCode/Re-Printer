@@ -1,0 +1,27 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  imageSrc?: string;      // fallback (svg/png)
+  imageWebp?: string;     // preferred .webp
+}
+
+const { title, description, imageSrc, imageWebp } = Astro.props;
+---
+
+<article class="card card-feature">
+  <div class="card-content">
+    <h3 class="service-title">{title}</h3>
+    <p class="service-desc">{description}</p>
+  </div>
+  {(imageWebp || imageSrc) && (
+    <div class="card-image-overlay">
+      <picture>
+        {imageWebp && <source srcset={imageWebp} type="image/webp" />}
+        {imageSrc && <img src={imageSrc} alt="" loading="lazy" />}
+        {!imageSrc && imageWebp && <img src={imageWebp} alt="" loading="lazy" />}
+      </picture>
+    </div>
+  )}
+</article>
+
