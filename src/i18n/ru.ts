@@ -41,8 +41,8 @@ const ru = {
   ],
   contacts: {
     hours: 'Работаем ежедневно 9:00–20:00 · Выезд по городу',
-    phone_display: '+7 (900) 000‑00‑00',
-    email: 'info@example.com',
+    phone_display: '+7 (921) 097‑44‑63',
+    email: 'info@re-printer.ru',
     name_label: 'Имя',
     phone_label: 'Телефон',
     device_label: 'Устройство',
@@ -62,6 +62,8 @@ const ru = {
 };
 
 export default ru;
+
+
 
 
 
