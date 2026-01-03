@@ -277,6 +277,13 @@ p {
   transition: all var(--transition-base);
 }
 
+/* Mobile performance: blur (backdrop-filter) очень дорогой на скролле */
+@media (max-width: 767px) {
+  .card {
+    backdrop-filter: none;
+  }
+}
+
 .card:hover {
   box-shadow: var(--shadow-lg);
   transform: translateY(-2px);

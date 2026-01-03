@@ -406,6 +406,19 @@ const zoneShapes: Array<{
       top: calc(var(--space-3xl));
     }
 
+    /* Mobile performance: убираем blur и sticky (в 1 колонке не нужен) */
+    @media (max-width: 767px) {
+      .city-map {
+        filter: none;
+      }
+
+      .panel {
+        backdrop-filter: none;
+        position: static;
+        top: auto;
+      }
+    }
+
     .panel-kicker {
       font-size: 0.875rem;
       color: var(--color-text-tertiary);

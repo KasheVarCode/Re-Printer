@@ -130,6 +130,21 @@ body.animated-bg::before {
   will-change: filter;
 }
 
+/* Mobile performance: делаем фон статичным и убираем "noise" слой */
+@media (max-width: 767px) {
+  body.animated-bg::before {
+    animation: none;
+    background-image:
+      radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)),
+      radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)),
+      radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)),
+      radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3)),
+      radial-gradient(circle at var(--x-4) var(--y-4), var(--c-4) var(--s-start-4), transparent var(--s-end-4));
+    background-blend-mode: normal;
+    will-change: auto;
+  }
+}
+
 /* Убираем задержку при выключении эффекта */
 body.animated-bg.grayscale-mode::before {
   transition-delay: 300ms;
