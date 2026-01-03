@@ -411,6 +411,7 @@ body.cmy-mode .section-title {
 
 .hero h1 {
   margin-bottom: var(--space-lg);
+  white-space: pre-line;
 }
 
 .hero .lead {
@@ -510,6 +511,73 @@ body.cmy-mode .section-title {
 .case-meta {
   color: var(--color-text-tertiary);
   font-size: 0.9375rem;
+}
+
+/* Workflow (Promises + Process) */
+.process-grid {
+  display: grid;
+  gap: var(--space-xl);
+  grid-template-columns: 1fr;
+  margin-top: var(--space-2xl);
+}
+
+@media (min-width: 768px) {
+  .process-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.process-step:hover {
+  transform: translateY(-2px);
+}
+
+.step-num {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-accent-light);
+  color: var(--color-accent-hover);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-md);
+}
+
+.process-title {
+  margin-bottom: var(--space-sm);
+  font-size: 1.25rem;
+}
+
+.process-desc {
+  color: var(--color-text-tertiary);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+/* Promises */
+.promises-grid {
+  display: grid;
+  gap: var(--space-xl);
+  grid-template-columns: 1fr;
+  margin-top: var(--space-2xl);
+}
+
+@media (min-width: 768px) {
+  .promises-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.promise-title {
+  margin-bottom: var(--space-sm);
+  font-size: 1.25rem;
+}
+
+.promise-desc {
+  color: var(--color-text-tertiary);
+  font-size: 0.9375rem;
+  line-height: 1.7;
 }
 
 /* Contacts Section */

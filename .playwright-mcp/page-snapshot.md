@@ -1,0 +1,134 @@
+### Page state
+- Page URL: http://localhost:4321/
+- Page Title: Re-Printer
+- Page Snapshot:
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]: Re-Printer
+      - navigation [ref=e5]:
+        - link "Услуги" [ref=e6] [cursor=pointer]:
+          - /url: "#services"
+        - link "Как работаем" [ref=e7] [cursor=pointer]:
+          - /url: "#workflow"
+        - link "Зона" [ref=e8] [cursor=pointer]:
+          - /url: "#coverage"
+  - main [ref=e9]:
+    - generic [ref=e12]:
+      - heading "Обслуживание оргтехники для Вашего бизнеса в Санкт-Петербурге" [level=1] [ref=e13]
+      - paragraph [ref=e14]: Быстро · Качественно · Гарантия
+      - generic [ref=e15]:
+        - link "📞 Позвонить" [ref=e16] [cursor=pointer]:
+          - /url: tel:+79210974463
+        - link "💬 WhatsApp" [ref=e17] [cursor=pointer]:
+          - /url: https://wa.me/79210974463
+    - generic [ref=e19]:
+      - heading "Услуги" [level=2] [ref=e20]
+      - generic [ref=e21]:
+        - article [ref=e22]:
+          - generic [ref=e23]:
+            - heading "Ремонт монохромных устройств" [level=3] [ref=e24]
+            - paragraph [ref=e25]: "Лазерные принтеры/МФУ: ролики, узел термозакрепления, подача бумаги."
+        - article [ref=e26]:
+          - generic [ref=e27]:
+            - heading "Ремонт полноцветных устройств" [level=3] [ref=e28]
+            - paragraph [ref=e29]: Калибровка, блок проявки/трансфера, механика печати, артефакты цвета.
+        - article [ref=e30]:
+          - generic [ref=e31]:
+            - heading "Расходные материалы" [level=3] [ref=e32]
+            - paragraph [ref=e33]: Тонер‑картриджи, фотобарабаны, ролики захвата, профилактические наборы.
+    - generic [ref=e35]:
+      - paragraph [ref=e36]: Работаем с ведущими брендами
+      - generic [ref=e37]:
+        - generic [ref=e38]: Brother
+        - generic [ref=e39]: Canon
+        - generic [ref=e40]: HP
+        - generic [ref=e41]: Epson
+        - generic [ref=e42]: Konica Minolta
+        - generic [ref=e43]: Kyocera
+        - generic [ref=e44]: Ricoh
+        - generic [ref=e45]: Samsung
+        - generic [ref=e46]: Sharp
+        - generic [ref=e47]: Xerox
+    - generic [ref=e49]:
+      - heading "Как мы работаем" [level=2] [ref=e50]
+      - paragraph [ref=e51]: Коротко о главном — без лишних вопросов и “сюрпризов”.
+      - generic [ref=e52]:
+        - article [ref=e53]:
+          - heading "Обслуживание компаний" [level=3] [ref=e54]
+          - paragraph [ref=e55]: Работаем с организациями и корпоративными клиентами.
+        - article [ref=e56]:
+          - heading "Быстрый выезд" [level=3] [ref=e57]
+          - paragraph [ref=e58]: Выезд специалиста в кратчайшие сроки.
+        - article [ref=e59]:
+          - heading "Гарантия" [level=3] [ref=e60]
+          - paragraph [ref=e61]: Гарантия на выполненные работы и установленные узлы.
+      - generic [ref=e62]:
+        - article [ref=e63]:
+          - generic [ref=e64]: "1"
+          - heading "Диагностика" [level=3] [ref=e65]
+          - paragraph [ref=e66]: Проверяем устройство и причины неисправности.
+        - article [ref=e67]:
+          - generic [ref=e68]: "2"
+          - heading "Согласование" [level=3] [ref=e69]
+          - paragraph [ref=e70]: Согласуем стоимость и сроки до начала работ.
+        - article [ref=e71]:
+          - generic [ref=e72]: "3"
+          - heading "Ремонт" [level=3] [ref=e73]
+          - paragraph [ref=e74]: Выполняем ремонт и профилактику.
+    - generic [ref=e76]:
+      - heading "Зона обслуживания" [level=2] [ref=e77]
+      - paragraph [ref=e78]: Выберите зону на карте — покажем стоимость выезда и ориентир по срокам прибытия.
+      - generic [ref=e79]:
+        - generic [ref=e80]:
+          - img "Карта Санкт‑Петербурга с зонами обслуживания" [ref=e81]:
+            - generic [ref=e82]:
+              - 'generic "Зона: Северо‑Запад" [ref=e85] [cursor=pointer]'
+              - 'generic "Зона: Север" [ref=e86] [cursor=pointer]'
+              - 'generic "Зона: Запад" [ref=e87] [cursor=pointer]'
+              - 'generic "Зона: Восток" [ref=e88] [cursor=pointer]'
+              - 'generic "Зона: Центр" [ref=e89] [cursor=pointer]'
+              - 'generic "Зона: Юго‑Запад" [ref=e90] [cursor=pointer]'
+              - 'generic "Зона: Юг" [ref=e91] [cursor=pointer]'
+          - generic "Список зон обслуживания" [ref=e92]:
+            - button "Северо‑Запад" [ref=e93] [cursor=pointer]
+            - button "Север" [ref=e94] [cursor=pointer]
+            - button "Запад" [ref=e95] [cursor=pointer]
+            - button "Центр" [ref=e96] [cursor=pointer]
+            - button "Восток" [ref=e97] [cursor=pointer]
+            - button "Юго‑Запад" [ref=e98] [cursor=pointer]
+            - button "Юг" [ref=e99] [cursor=pointer]
+            - button "Сбросить" [ref=e100] [cursor=pointer]
+        - complementary [ref=e101]:
+          - generic [ref=e102]:
+            - generic [ref=e103]: Выбрана зона
+            - generic [ref=e104]: —
+          - generic [ref=e105]:
+            - generic [ref=e106]:
+              - term [ref=e107]: Стоимость выезда
+              - definition [ref=e108]: —
+            - generic [ref=e109]:
+              - term [ref=e110]: Срок прибытия
+              - definition [ref=e111]: —
+          - paragraph [ref=e112]:
+            - link "© OpenStreetMap contributors" [ref=e113] [cursor=pointer]:
+              - /url: https://openstreetmap.org/copyright
+  - contentinfo [ref=e114]:
+    - generic [ref=e116]:
+      - generic [ref=e117]: Re-Printer
+      - paragraph [ref=e118]: © 2026 Все права защищены
+  - generic [ref=e121]:
+    - button "Menu" [ref=e122]:
+      - img [ref=e124]
+      - generic: Menu
+    - button "Inspect" [ref=e128]:
+      - img [ref=e130]
+      - generic: Inspect
+    - button "Audit" [ref=e132]:
+      - img [ref=e134]
+      - generic: Audit
+    - button "Settings" [ref=e137]:
+      - img [ref=e139]
+      - generic: Settings
+```

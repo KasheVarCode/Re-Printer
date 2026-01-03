@@ -1,9 +1,10 @@
 ---
 interface Props {
   title: string;
+  rightsLabel: string;
 }
 
-const { title } = Astro.props;
+const { title, rightsLabel } = Astro.props;
 const currentYear = new Date().getFullYear();
 ---
 
@@ -11,7 +12,7 @@ const currentYear = new Date().getFullYear();
   <div class="container">
     <div class="footer-content">
       <div class="logo">{title}</div>
-      <p class="footer-text">© {currentYear} Все права защищены</p>
+      <p class="footer-text">© {currentYear} {rightsLabel}</p>
     </div>
   </div>
 </footer>

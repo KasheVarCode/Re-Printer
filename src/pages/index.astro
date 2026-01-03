@@ -3,18 +3,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ServiceCard from '../components/ServiceCard.astro';
+import CoverageMap from '../components/CoverageMap.astro';
 import { t, get } from '../i18n/index';
 
 const PHONE = '+79210974463';
 const WA = `https://wa.me/79210974463`;
 ---
 
-<BaseLayout title={t('site.title')} description={t('hero.lead')}>
+<BaseLayout title={t('site.title')} description={t('hero.lead')} lang={t('site.lang')}>
 	<!-- Header -->
 	<Header 
 		title={t('site.title')} 
 		servicesLabel={t('nav.services')} 
-		contactLabel={t('nav.contact')}
+		workflowLabel={t('nav.workflow')}
+		coverageLabel={t('nav.coverage')}
 	/>
 
 		<main>
@@ -59,7 +61,7 @@ const WA = `https://wa.me/79210974463`;
 			<!-- Brands Section -->
 			<section class="brands">
 				<div class="container">
-					<p class="text-center text-muted mb-lg">Работаем с ведущими брендами</p>
+					<p class="text-center text-muted mb-lg">{t('sections.brands.lead')}</p>
 					<div class="brands-grid">
 						{get('brands').map((brand: string) => (
 							<div class="brand-item">{brand}</div>
@@ -68,80 +70,50 @@ const WA = `https://wa.me/79210974463`;
 				</div>
 			</section>
 
-			<!-- Cases Section -->
-			<section>
+			<!-- Workflow (Promises + Process) -->
+			<section id="workflow">
 				<div class="container">
-					<h2 class="section-title">Наши работы</h2>
-					<div class="cases-grid">
-						{get('cases').map((item: any) => (
-							<article class="card">
-								<h3 class="case-title">{item.title}</h3>
-								<p class="case-meta">{item.meta}</p>
+					<h2 class="section-title">{t('workflow.title')}</h2>
+					<p class="section-subtitle">{t('workflow.lead')}</p>
+
+					<div class="promises-grid">
+						{get('workflow.promises').map((item: any) => (
+							<article class="card promise">
+								<h3 class="promise-title">{item.title}</h3>
+								<p class="promise-desc">{item.desc}</p>
+							</article>
+						))}
+					</div>
+
+					<div class="process-grid">
+						{get('workflow.steps').map((step: any, idx: number) => (
+							<article class="card process-step">
+								<div class="step-num" aria-hidden="true">{idx + 1}</div>
+								<h3 class="process-title">{step.title}</h3>
+								<p class="process-desc">{step.desc}</p>
 							</article>
 						))}
 					</div>
 				</div>
 			</section>
 
-			<!-- Contacts Section -->
-			<section class="contacts" id="contacts">
-				<div class="container">
-					<div class="contacts-card">
-						<h2 class="text-center mb-lg">{t('nav.contact')}</h2>
-						<div class="contacts-methods">
-							<a class="btn btn-primary" href={`tel:${PHONE}`}>📞 {t('contacts.phone_display')}</a>
-							<a class="btn btn-secondary" href={`mailto:${t('contacts.email')}`}>✉️ {t('contacts.email')}</a>
-						</div>
-						<p class="text-center text-muted mb-xl">{t('contacts.hours')}</p>
-						
-						<form id="lead-form" class="contacts-form">
-							<div class="form-group">
-								<label class="form-label" for="name">{t('contacts.name_label')}</label>
-								<input 
-									class="form-input" 
-									id="name"
-									name="name" 
-									type="text" 
-									placeholder={t('contacts.name_label')} 
-									required 
-								/>
-							</div>
-							<div class="form-group">
-								<label class="form-label" for="phone">{t('contacts.phone_label')}</label>
-								<input 
-									class="form-input"
-									id="phone" 
-									name="phone" 
-									type="tel" 
-									placeholder={t('contacts.phone_example')} 
-									required 
-								/>
-							</div>
-							<div class="form-group">
-								<label class="form-label" for="device">{t('contacts.device_label')}</label>
-								<input 
-									class="form-input"
-									id="device" 
-									name="device" 
-									type="text" 
-									placeholder={t('contacts.device_placeholder')}
-								/>
-								<span class="form-hint">Необязательно, но поможет нам подготовиться</span>
-							</div>
-							<button class="btn btn-primary" type="submit">Отправить заявку</button>
-						</form>
-					</div>
-				</div>
-			</section>
+			<!-- Coverage Zones (module) -->
+			<CoverageMap
+				title={t('coverage.title')}
+				lead={t('coverage.lead')}
+				sectionId="coverage"
+			/>
+
+			<!-- Contacts Section (hidden) -->
 		</main>
 
 		<!-- Footer -->
-		<Footer title={t('site.title')} />
+		<Footer title={t('site.title')} rightsLabel={t('footer.rights')} />
 
 		<!-- Sticky CTA (Mobile) -->
 		<div class="sticky-cta">
-			<a class="btn btn-primary" href={`tel:${PHONE}`}>📞 Позвонить</a>
-			<a class="btn btn-secondary" href={WA} target="_blank" rel="noopener">💬 WhatsApp</a>
+			<a class="btn btn-primary" href={`tel:${PHONE}`}>📞 {t('cta.call')}</a>
+			<a class="btn btn-secondary" href={WA} target="_blank" rel="noopener">💬 {t('cta.whatsapp')}</a>
 		</div>
 
 		<!-- Animations Script -->
@@ -217,36 +189,6 @@ const WA = `https://wa.me/79210974463`;
 					lastScroll = currentScroll;
 				});
 
-				// Обработка формы
-				const form = document.getElementById('lead-form');
-				if (form && form.tagName === 'FORM') {
-					form.addEventListener('submit', (e) => {
-						e.preventDefault();
-						
-						const formData = new FormData(form as HTMLFormElement);
-						const data = Object.fromEntries(formData.entries());
-						
-						console.log('Форма отправлена:', data);
-						
-						// Показываем успешное сообщение
-						const button = form.querySelector('button[type="submit"]');
-						const originalText = button ? button.textContent : null;
-						if (button instanceof HTMLButtonElement) {
-							button.textContent = '✓ Отправлено!';
-							button.disabled = true;
-							button.style.background = '#4F46E5';
-						}
-						
-						setTimeout(() => {
-							(form as HTMLFormElement).reset();
-							if (button instanceof HTMLButtonElement) {
-								button.textContent = originalText || 'Отправить заявку';
-								button.disabled = false;
-								button.style.background = '';
-							}
-						}, 3000);
-					});
-				}
 			}
 		</script>
 </BaseLayout>

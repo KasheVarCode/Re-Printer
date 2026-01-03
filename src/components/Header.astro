@@ -2,10 +2,11 @@
 interface Props {
   title: string;
   servicesLabel: string;
-  contactLabel: string;
+  workflowLabel?: string;
+  coverageLabel?: string;
 }
 
-const { title, servicesLabel, contactLabel } = Astro.props;
+const { title, servicesLabel, workflowLabel, coverageLabel } = Astro.props;
 ---
 
 <header class="site-header">
@@ -13,7 +14,8 @@ const { title, servicesLabel, contactLabel } = Astro.props;
     <div class="logo">{title}</div>
     <nav>
       <a class="btn btn-ghost" href="#services">{servicesLabel}</a>
-      <a class="btn btn-primary" href="#contacts">{contactLabel}</a>
+      {workflowLabel && <a class="btn btn-ghost" href="#workflow">{workflowLabel}</a>}
+      {coverageLabel && <a class="btn btn-ghost" href="#coverage">{coverageLabel}</a>}
     </nav>
   </div>
 </header>

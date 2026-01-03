@@ -16,7 +16,8 @@ pnpm-debug.log*
 # environment variables
 .env
 .env.production
-.cursorerules
+.cursorrules
+.gitignore
 
 # macOS-specific files
 .DS_Store
