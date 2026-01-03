@@ -155,6 +155,13 @@ header.site-header nav {
   align-items: center;
 }
 
+/* Mobile: header скрываем (на мобилке используется sticky-cta) */
+@media (max-width: 767px) {
+  header.site-header {
+    display: none;
+  }
+}
+
 /* ============================================
    TYPOGRAPHY
    ============================================ */
